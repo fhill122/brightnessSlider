@@ -14,10 +14,11 @@ TrayIcon::TrayIcon(QObject *parent):
     QSystemTrayIcon(parent)
 {
     // Set menu
-    QAction* settingAction = menu.addAction("Setting");
-    QObject::connect(settingAction, &QAction::triggered, this, &QApplication::quit);
+    settingAction = menu.addAction("Setting");
 
-    QAction* exitAction = menu.addAction("Exit");
+    aboutAction = menu.addAction("About");
+
+    exitAction = menu.addAction("Exit");
     QObject::connect(exitAction, &QAction::triggered, this, &QApplication::quit);
 
     setContextMenu(&menu);

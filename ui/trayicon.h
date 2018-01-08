@@ -10,7 +10,7 @@ class TrayIcon : public QSystemTrayIcon
     Q_OBJECT
 
 public:
-
+    QAction *settingAction, *aboutAction, *exitAction;
 
 private:
     QFont font;
