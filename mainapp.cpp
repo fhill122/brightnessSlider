@@ -24,6 +24,9 @@ int MainApp::run()
     instance.listen(name);
 
     trayIcon.show();
+    sw.show();
+    aw.show();
+
     return qapp->exec();
 }
 

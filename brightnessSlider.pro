@@ -11,33 +11,39 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = brightnessSlider
 TEMPLATE = app
 
+INCLUDEPATH += $$PWD/ui
 
 SOURCES += main.cpp\
-    trayicon.cpp \
     powermonitor.cpp \
     brightnessControl.cpp \
-    popupWindow.cpp \
-    touchslider.cpp \
     singleinstance.cpp \
     applicationsetting.cpp \
-    mainapp.cpp
+    mainapp.cpp \
+    ui/aboutwindow.cpp \
+    ui/popupWindow.cpp \
+    ui/trayicon.cpp \
+    ui/touchslider.cpp \
+    ui/settingwindow.cpp
 
 HEADERS  += \
-    trayicon.h \
-    trayconfig.h \
     powermonitor.h \
     brightnessControl.h \
-    popupWindow.h \
-    touchslider.h \
-    popupconfig.h \
     singleinstance.h \
     applicationsetting.h \
     mainapp.h \
-    globalconfig.h
+    globalconfig.h \
+    ui/aboutwindow.h \
+    ui/popupWindow.h \
+    ui/popupconfig.h \
+    ui/trayconfig.h \
+    ui/settingwindow.h \
+    ui/touchslider.h \
+    ui/trayicon.h
 
 FORMS    += \
-    popupWindow.ui \
-#    popupWindow_batteryLabel.ui
+    ui/aboutwindow.ui \
+    ui/popupWindow.ui \
+    ui/settingwindow.ui
 
 DISTFILES +=
 
