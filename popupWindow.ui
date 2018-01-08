@@ -60,6 +60,7 @@
         <property name="font">
          <font>
           <family>Microsoft Sans Serif</family>
+          <pointsize>16</pointsize>
          </font>
         </property>
         <property name="styleSheet">

@@ -1,10 +1,10 @@
 <RCC>
-    <qresource prefix="/images/tray">
+    <qresource prefix="/tray">
         <file>images/charging.png</file>
         <file>images/batteryFull.png</file>
         <file>images/chargingFull.png</file>
     </qresource>
-    <qresource prefix="/images/popupWindow">
+    <qresource prefix="/popupWindow">
         <file>images/BrightnessIconWhite.png</file>
     </qresource>
 </RCC>

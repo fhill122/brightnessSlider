@@ -20,7 +20,7 @@ float background_a = 0.8f;
 const float timeLabel_a = 0.8f;
 
 //brightness icon
-const char brightnessIcon[] = ":/images/popupWindow/BrightnessIconWhite.png";
+const char brightnessIcon[] = ":/popupWindow/images/BrightnessIconWhite.png";
 
 //slider
 const int grooveHeight = 10;

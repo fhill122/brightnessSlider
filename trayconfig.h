@@ -20,7 +20,7 @@ const int C_BACKGROUND_NONE = 0;
 const int C_BACKGROUND_IMAGE =1;
 // TODO
 const int C_BACKGROUND_COLOR =2;
-const char chargingBackgroundImage[] = ":/images/tray/charging.png";
+const char chargingBackgroundImage[] = ":/tray/images/charging.png";
 int chargingBackground_a = 60;
 
 // text color
@@ -42,8 +42,8 @@ char fontFamily[] = "Microsoft Sans Serif";
 int fontSize = 32;
 
 //full indicate image
-const char chargingFullImage[] = ":/images/tray/chargingFull.png";
-const char batteryFullImage[] = ":/images/tray/batteryFull.png";
+const char chargingFullImage[] = ":/tray/images/chargingFull.png";
+const char batteryFullImage[] = ":/tray/images/batteryFull.png";
 }
 
 #endif // TRAYCONFIG_H
