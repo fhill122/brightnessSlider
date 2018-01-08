@@ -5,6 +5,7 @@
 MainApp::MainApp(QApplication* a,QObject *parent) : QObject(parent), qapp(a)
 {
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    a->setQuitOnLastWindowClosed(false);
 
     powerMonitor.AddListeners(&trayIcon, &w);
 
