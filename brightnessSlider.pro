@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+VERSION = 3.0.0.0 # major.minor.patch.build
+
 QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
