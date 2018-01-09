@@ -34,6 +34,9 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &, const QString &
 
 int main(int argc, char *argv[])
 {
+    // must set before QApplication object created
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     global::outFile.remove();
     global::outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     if(LOG_TO_FILE){
