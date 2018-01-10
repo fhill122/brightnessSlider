@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>131</width>
-    <height>46</height>
+    <width>483</width>
+    <height>201</height>
    </rect>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -21,14 +21,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,4,1">
       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-       <widget class="QLabel" name="brightnessIcon">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
+       <widget class="QLabel" name="brightnessIcon"/>
       </item>
       <item>
        <widget class="TouchSlider" name="brightnessSlider">
@@ -59,7 +52,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Microsoft Sans Serif</family>
+          <family>Tahoma</family>
           <pointsize>16</pointsize>
          </font>
         </property>

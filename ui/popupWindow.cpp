@@ -31,6 +31,7 @@ PopupWindow::PopupWindow(QWidget *parent) :
             sliderRGB[0] = GetBValue(color); sliderRGB[1] = GetGValue(color); sliderRGB[2] = GetRValue(color);
         }
     }
+    pBrightnessIcon = QPixmap(PopupConfig::brightnessIcon);
     RefreshUi();
 
     // set geometry
@@ -39,7 +40,7 @@ PopupWindow::PopupWindow(QWidget *parent) :
     TogglePressAndHold(false);
 
     // signal connection beyond ui elements
-    QObject::connect(QApplication::primaryScreen(), &QScreen::logicalDotsPerInchChanged, this, &PopupWindow::RefreshUi);
+//    QObject::connect(QApplication::primaryScreen(), &QScreen::logicalDotsPerInchChanged, this, &PopupWindow::RefreshUi);
 
 }
 
@@ -47,10 +48,11 @@ PopupWindow::PopupWindow(QWidget *parent) :
 void PopupWindow::RefreshUi(){
     ui->setupUi(this);
 
-    // brightness icon
-    QPixmap p = QPixmap(PopupConfig::brightnessIcon);
-    int iconSize = 1.*p.height()/3/96*QApplication::primaryScreen()->logicalDotsPerInch();
-    ui->brightnessIcon->setPixmap( p.scaledToHeight( iconSize , Qt::SmoothTransformation)  );
+    // brightness icon 27pixel in 100% dpi
+    int iconSize = 1.*pBrightnessIcon.height()/3/96*QApplication::primaryScreen()->logicalDotsPerInch();
+    ui->brightnessIcon->setScaledContents(true);
+    ui->brightnessIcon->setFixedSize(iconSize,iconSize);
+    ui->brightnessIcon->setPixmap(pBrightnessIcon);
 
     // set slider height
     int grooveHeight = 1.* PopupConfig::grooveHeight /96*QApplication::primaryScreen()->logicalDotsPerInch();

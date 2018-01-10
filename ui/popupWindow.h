@@ -21,6 +21,8 @@ private:
     QPropertyAnimation *animation;
     QString timeLabel;
     QString percentLabel;
+    QPixmap pBrightnessIcon;
+
 
 private:
     bool nativeEvent(const QByteArray & eventType, void * message, long * result) Q_DECL_OVERRIDE;
