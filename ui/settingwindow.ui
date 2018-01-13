@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="popupWindow">
       <attribute name="title">
@@ -49,7 +49,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QSlider" name="horizontalSlider_3">
+             <widget class="QSlider" name="s_transparency">
               <property name="minimumSize">
                <size>
                 <width>200</width>
@@ -68,7 +68,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_10">
+             <widget class="QLabel" name="l_transparencyPercent">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -116,7 +116,7 @@
             <item>
              <widget class="QLabel" name="label_12">
               <property name="text">
-               <string>color: </string>
+               <string>Color: </string>
               </property>
              </widget>
             </item>
@@ -158,7 +158,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QCheckBox" name="checkBox_2">
+           <widget class="QCheckBox" name="cb_matchSystem">
             <property name="text">
              <string>Match System color</string>
             </property>
@@ -167,14 +167,14 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
-             <widget class="QLabel" name="label_8">
+             <widget class="QLabel" name="l_customColor">
               <property name="text">
                <string>Custom color: </string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="b_customColor">
               <property name="maximumSize">
                <size>
                 <width>16</width>
@@ -221,7 +221,7 @@
      </widget>
      <widget class="QWidget" name="tray">
       <attribute name="title">
-       <string>Tray</string>
+       <string>System tray</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
@@ -239,21 +239,21 @@
           <string>Show battery percentage</string>
          </property>
          <property name="checked">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="l_textColor">
            <property name="text">
             <string>Text color: </string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="b_textColor">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -302,7 +302,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="horizontalSlider">
+          <widget class="QSlider" name="s_lowBattery">
            <property name="minimumSize">
             <size>
              <width>200</width>
@@ -321,7 +321,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="sliderValue">
+          <widget class="QLabel" name="l_sliderValue">
            <property name="minimumSize">
             <size>
              <width>20</width>
@@ -343,7 +343,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="l_sliderPercent">
            <property name="text">
             <string>%</string>
            </property>
@@ -370,14 +370,14 @@
           <number>30</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="l_lowBatteryColor">
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;     Low Battery color:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>Low Battery color: </string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="b_lowBatteryColor">
            <property name="maximumSize">
             <size>
              <width>16</width>
@@ -468,9 +468,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>horizontalSlider</sender>
+   <sender>s_lowBattery</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>sliderValue</receiver>
+   <receiver>l_sliderValue</receiver>
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -480,6 +480,182 @@
     <hint type="destinationlabel">
      <x>449</x>
      <y>245</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_showPencentage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>b_textColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>80</x>
+     <y>75</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_showPencentage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>l_textColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>42</x>
+     <y>75</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_showPencentage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>cb_lowBattery</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>106</x>
+     <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_showPencentage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>s_lowBattery</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>301</x>
+     <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_showPencentage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>l_sliderValue</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>416</x>
+     <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_showPencentage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>l_sliderPercent</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_showPencentage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>l_lowBatteryColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>87</x>
+     <y>131</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_showPencentage</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>b_lowBatteryColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>142</x>
+     <y>131</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_matchSystem</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>l_customColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>164</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>59</x>
+     <y>189</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_matchSystem</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>b_customColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>164</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>104</x>
+     <y>189</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>s_transparency</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>l_transparencyPercent</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>198</x>
+     <y>75</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>313</x>
+     <y>75</y>
     </hint>
    </hints>
   </connection>
