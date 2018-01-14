@@ -4,8 +4,6 @@
 #
 #-------------------------------------------------
 
-VERSION = 3.0.0.0 # major.minor.patch.build
-
 QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -53,6 +51,19 @@ DISTFILES +=
 
 RESOURCES += \
     resources.qrc
+
+# version
+VERSION_MAJOR = 1
+VERSION_MINOR = 0
+VERSION_PATCH = 0
+VERSION_BUILD = 0
+
+DEFINES += "VERSION_MAJOR=$$VERSION_MAJOR"\
+       "VERSION_MINOR=$$VERSION_MINOR"\
+       "VERSION_PATCH=$$VERSION_PATCH"\
+       "VERSION_BUILD=$$VERSION_BUILD"
+
+VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_PATCH}.$${VERSION_BUILD}
 
 # windows header Wbemidl.h violate strictStrings rules
 win32: QMAKE_CXXFLAGS_RELEASE -= -Zc:strictStrings

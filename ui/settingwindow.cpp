@@ -7,6 +7,7 @@ SettingWindow::SettingWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowIcon(QIcon(iconFile));
 }
 
 SettingWindow::~SettingWindow()

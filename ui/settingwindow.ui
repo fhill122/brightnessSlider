@@ -162,12 +162,18 @@
             <property name="text">
              <string>Match System color</string>
             </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
              <widget class="QLabel" name="l_customColor">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="text">
                <string>Custom color: </string>
               </property>
@@ -175,6 +181,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="b_customColor">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="maximumSize">
                <size>
                 <width>16</width>

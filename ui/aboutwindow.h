@@ -11,6 +11,9 @@ class AboutWindow : public QDialog
 {
     Q_OBJECT
 
+private:
+    const QString iconFile = ":/windowIcon/images/windowIcon.png";
+
 public:
     explicit AboutWindow(QWidget *parent = 0);
     ~AboutWindow();
