@@ -17,7 +17,6 @@ SOURCES += main.cpp\
     powermonitor.cpp \
     brightnessControl.cpp \
     singleinstance.cpp \
-    applicationsetting.cpp \
     mainapp.cpp \
     ui/aboutwindow.cpp \
     ui/popupWindow.cpp \
@@ -29,12 +28,10 @@ HEADERS  += \
     powermonitor.h \
     brightnessControl.h \
     singleinstance.h \
-    applicationsetting.h \
     mainapp.h \
     globalconfig.h \
     ui/aboutwindow.h \
     ui/popupWindow.h \
-    ui/popupconfig.h \
     ui/trayconfig.h \
     ui/settingwindow.h \
     ui/touchslider.h \

@@ -14,26 +14,24 @@
 
 #include <QWidget>
 #include <Windows.h>
-#include "popupWindow.h"
-#include "trayicon.h"
-#include "powermonitor.h"
 #include <QTimer>
+#include <QSettings>
 
 
 class PowerMonitor: public QWidget
 {
+     Q_OBJECT
+
 private:
     static _SYSTEM_POWER_STATUS powerStatus;
     QTimer *updateTimer; // for routineUpdate
     const int period = 60; // background checking period (seconds)
     bool updatedRecently = false;
+    QSettings setting;
 
     HPOWERNOTIFY hPowerSourceNotify;
     HPOWERNOTIFY hPowerPercentageNotify;
     HWND windowHandle;
-
-    TrayIcon *tray = NULL;
-    PopupWindow *window = NULL;
 
 
 public:
@@ -46,10 +44,12 @@ private:
 public:
     PowerMonitor(QWidget *parent = Q_NULLPTR);
     ~PowerMonitor();
-    bool UpdateOnce(); //update immediately. Usually not required
-    void AddListeners(TrayIcon *t, PopupWindow *w);
+    bool UpdateOnce(); //update immediately.
     _SYSTEM_POWER_STATUS getPowerStatus();
     static bool isOnAC();
+
+signals:
+    void powerStatusUpdated(_SYSTEM_POWER_STATUS);
 };
 
 #endif // POWERMONITOR_H

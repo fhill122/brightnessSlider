@@ -3,6 +3,7 @@
         <file>images/charging.png</file>
         <file>images/batteryFull.png</file>
         <file>images/chargingFull.png</file>
+        <file>images/staticTray.png</file>
     </qresource>
     <qresource prefix="/popupWindow">
         <file>images/BrightnessIconWhite.png</file>

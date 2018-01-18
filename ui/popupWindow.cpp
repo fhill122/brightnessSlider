@@ -1,5 +1,4 @@
 #include "popupWindow.h"
-#include "popupconfig.h"
 #include "ui_popupWindow.h"
 #include <Windows.h>
 #include <tpcshrd.h>
@@ -20,18 +19,9 @@ PopupWindow::PopupWindow(QWidget *parent) :
 {
     // ui
     animation = new QPropertyAnimation(this,"pos");
-    animation->setDuration(PopupConfig::animationDuration);
+    animation->setDuration(ANIMATION_DURATION);
     setAttribute(Qt::WA_TranslucentBackground, true);
-    sliderRGB[0] = PopupConfig::slider_r; sliderRGB[1] = PopupConfig::slider_g; sliderRGB[2] = PopupConfig::slider_b;
-    if (PopupConfig::sysColor){
-        DWORD color = 0;
-        BOOL opaque = FALSE;
-        HRESULT hr = DwmGetColorizationColor(&color, &opaque);
-        if (SUCCEEDED(hr)){
-            sliderRGB[0] = GetBValue(color); sliderRGB[1] = GetGValue(color); sliderRGB[2] = GetRValue(color);
-        }
-    }
-    pBrightnessIcon = QPixmap(PopupConfig::brightnessIcon);
+    pBrightnessIcon = QPixmap(BRIGHTNESS_ICON);
     RefreshUi();
 
     // set geometry
@@ -54,8 +44,21 @@ void PopupWindow::RefreshUi(){
     ui->brightnessIcon->setFixedSize(iconSize,iconSize);
     ui->brightnessIcon->setPixmap(pBrightnessIcon);
 
-    // set slider height
-    int grooveHeight = 1.* PopupConfig::grooveHeight /96*QApplication::primaryScreen()->logicalDotsPerInch();
+    // set slider
+    if (setting.value("popup/sliderMatchSysColor").toBool()){
+        DWORD color = 0;
+        BOOL opaque = FALSE;
+        HRESULT hr = DwmGetColorizationColor(&color, &opaque);
+        if (SUCCEEDED(hr)){
+            sliderRGB[0] = GetBValue(color); sliderRGB[1] = GetGValue(color); sliderRGB[2] = GetRValue(color);
+        }
+    }
+    else{
+        sliderRGB[0] = setting.value("popup/sliderColor_r").toInt();
+        sliderRGB[1] = setting.value("popup/sliderColor_g").toInt();
+        sliderRGB[2] = setting.value("popup/sliderColor_b").toInt();
+    }
+    int grooveHeight = 1.* GROOVE_HEIGHT /96*QApplication::primaryScreen()->logicalDotsPerInch();
     QString sliderStyle =
             "QSlider::groove:horizontal{"
                 "border: none;"
@@ -101,8 +104,8 @@ void PopupWindow::SetGeometry(){
     int screenH = QApplication::desktop()->availableGeometry().height();
     int screenW = QApplication::desktop()->availableGeometry().width();
     int dpi = QApplication::primaryScreen()->logicalDotsPerInch();
-    int windowH = PopupConfig::WINDOW_H * dpi/96;
-    int windowW = PopupConfig::WINDOW_W * dpi/96;
+    int windowH = WINDOW_H * dpi/96;
+    int windowW = WINDOW_W * dpi/96;
 
     setGeometry(screenW - windowW, screenH - windowH, windowW, windowH);
     qDebug()<<"Geometry Set: h="<<windowH <<", real="<<height();
@@ -161,6 +164,7 @@ void PopupWindow::Popup(QSystemTrayIcon::ActivationReason reason){
     show();
 }
 
+//reserved
 void PopupWindow::UpdateBatteryInfo(_SYSTEM_POWER_STATUS powerStatus){
 //    qDebug()<<powerStatus.BatteryLifeTime/60;
 }
@@ -168,7 +172,11 @@ void PopupWindow::UpdateBatteryInfo(_SYSTEM_POWER_STATUS powerStatus){
 
 void PopupWindow::paintEvent(QPaintEvent *event){
     QPainter painter(this);
-    painter.fillRect(QRectF(0, 0, width(), height()), QColor(PopupConfig::background_r,PopupConfig::background_g,PopupConfig::background_b,255*PopupConfig::background_a));
+    int r = setting.value("popup/background_r").toInt();
+    int g = setting.value("popup/background_g").toInt();
+    int b = setting.value("popup/background_b").toInt();
+    int a = 255*setting.value("popup/background_a").toFloat();
+    painter.fillRect(QRectF(0, 0, width(), height()), QColor(r,g,b,a));
 
 }
 

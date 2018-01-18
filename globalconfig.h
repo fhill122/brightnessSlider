@@ -3,7 +3,9 @@
 #include <QDir>
 
 namespace GlobalConfig {
-    const QString settingFile = QDir::currentPath()+"/bsconfig.ini";
+    // for QSettings
+    const QString OrganizationName = "config";
+    const QString ApplicationName = "config";
 }
 
 #endif // GLOBALCONFIG_H

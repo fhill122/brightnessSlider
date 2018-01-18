@@ -1,4 +1,6 @@
 #include <QApplication>
+#include <QSettings>
+#include "globalconfig.h"
 #include <QDebug>
 #include "mainapp.h"
 #include <QFile>
@@ -42,6 +44,11 @@ int main(int argc, char *argv[])
     if(LOG_TO_FILE){
         qInstallMessageHandler(myMessageOutput);
     }
+
+    QSettings::setDefaultFormat(QSettings::IniFormat);
+    QApplication::setOrganizationName(GlobalConfig::OrganizationName);
+    QApplication::setApplicationName(GlobalConfig::ApplicationName);
+    QSettings::setPath(QSettings::IniFormat,QSettings::UserScope,"./");
 
     QApplication a(argc, argv);
     MainApp app(&a);

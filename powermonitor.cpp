@@ -12,7 +12,7 @@ PowerMonitor::PowerMonitor(QWidget *parent ):QWidget(parent)
     hPowerSourceNotify = RegisterPowerSettingNotification((HWND)this->winId(), &GUID_ACDC_POWER_SOURCE, DEVICE_NOTIFY_WINDOW_HANDLE);
     hPowerPercentageNotify = RegisterPowerSettingNotification((HWND)this->winId(), &GUID_BATTERY_PERCENTAGE_REMAINING, DEVICE_NOTIFY_WINDOW_HANDLE);
 
-    if (!GetSystemPowerStatus(&powerStatus)){
+    if (!GetSystemPowerStatus(&powerStatus) && setting.value("tray/showBattery").toBool()){
         QMessageBox msgBox(QMessageBox::Critical, "Error", "Error get system power status.");
         msgBox.exec();
     }
@@ -65,18 +65,8 @@ bool PowerMonitor::UpdateOnce(){
 
     qDebug() << "Power monitor updated";
 
-    if(tray!=NULL)
-        tray->UpdateIcon(powerStatus);
-
-    if(window!=NULL)
-        window->UpdateBatteryInfo(powerStatus);
-
+    emit powerStatusUpdated(powerStatus);
     return result;
-}
-
-void PowerMonitor:: AddListeners(TrayIcon *t, PopupWindow *w){
-    tray = t;
-    window = w;
 }
 
 _SYSTEM_POWER_STATUS PowerMonitor::getPowerStatus(){return powerStatus;}

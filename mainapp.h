@@ -7,7 +7,6 @@
 #include "popupWindow.h"
 #include "trayicon.h"
 #include "powermonitor.h"
-#include "applicationsetting.h"
 #include "settingwindow.h"
 #include "aboutwindow.h"
 
@@ -16,7 +15,6 @@ class MainApp : public QObject
     Q_OBJECT
 
     QApplication *qapp;
-    ApplicationSetting appSetting;
     PopupWindow w;
     SettingWindow sw;
     AboutWindow aw;

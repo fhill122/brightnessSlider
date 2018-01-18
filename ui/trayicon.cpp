@@ -24,6 +24,7 @@ TrayIcon::TrayIcon(QObject *parent):
     setContextMenu(&menu);
 
     // Set tray icon
+    setIcon(QIcon(QPixmap(staticIconFile)));
     if (TrayConfig::chargingBackground == TrayConfig::C_BACKGROUND_IMAGE) {
         chargingBackground = QPixmap(TrayConfig::chargingBackgroundImage);
         if(chargingBackground.isNull()){
@@ -39,7 +40,7 @@ TrayIcon::TrayIcon(QObject *parent):
 }
 
 
-QRect TrayIcon:: getBoundingRect(QString textToDraw){
+QRect TrayIcon:: GetBoundingRect(QString textToDraw){
     QPixmap temp(1,1);
     QPainter tempPainter(&temp);
     tempPainter.setFont( font );
@@ -47,12 +48,12 @@ QRect TrayIcon:: getBoundingRect(QString textToDraw){
 
 }
 
-void TrayIcon:: drawNumber(int percentage, bool plugged, QPainter& painter, QRect rect){
-    if (percentage < TrayConfig::warnPercentage && !plugged) {
-        painter.setPen( QColor(TrayConfig::textW_r, TrayConfig::textW_g, TrayConfig::textW_b, TrayConfig::textW_a));
+void TrayIcon:: DrawNumber(int percentage, bool plugged, QPainter& painter, QRect rect){
+    if (setting.value("tray/warnLowBattery").toBool() && percentage < setting.value("tray/lowBatteryPercent").toInt() && !plugged) {
+        painter.setPen( QColor(setting.value("tray/lowBatteryColor_r").toInt(), setting.value("tray/lowBatteryColor_g").toInt(), setting.value("tray/lowBatteryColor_b").toInt() ));
     }
     else {
-        painter.setPen( QColor(TrayConfig::text_r, TrayConfig::text_g, TrayConfig::text_b, TrayConfig::text_a));
+        painter.setPen( QColor(setting.value("tray/batteryColor_r").toInt(), setting.value("tray/batteryColor_g").toInt(), setting.value("tray/batteryColor_b").toInt() ));
     }
     painter.setFont( font );
     painter.drawText( rect, Qt::AlignCenter, QString::number(percentage) );
@@ -62,13 +63,13 @@ void TrayIcon:: drawNumber(int percentage, bool plugged, QPainter& painter, QRec
 /*
  * Generate and set icon from a percentage number (0-100)
 */
-void TrayIcon:: UpdateIcon (int percentage, bool plugged){
+void TrayIcon:: UpdateBatteryIcon (int percentage, bool plugged){
     // check
     if (percentage > 100 || percentage < 0)
         return;
 
     // draw background
-    QRect boundingRect = getBoundingRect("00");
+    QRect boundingRect = GetBoundingRect("00");
     QPixmap pixmap(boundingRect.height()/TrayConfig::scale, boundingRect.height()/TrayConfig::scale);
     pixmap.fill(QColor(TrayConfig::background_r, TrayConfig::background_g, TrayConfig::background_b, TrayConfig::background_a));
     QPainter painter(&pixmap);
@@ -86,7 +87,7 @@ void TrayIcon:: UpdateIcon (int percentage, bool plugged){
     else{
         if (plugged)
             painter.drawPixmap(pixmap.rect(), chargingBackground);
-        drawNumber(percentage, plugged, painter, pixmap.rect());
+        DrawNumber(percentage, plugged, painter, pixmap.rect());
     }
 
     // set icon
@@ -96,7 +97,7 @@ void TrayIcon:: UpdateIcon (int percentage, bool plugged){
 }
 
 
-void TrayIcon::UpdateIcon(_SYSTEM_POWER_STATUS powerStatus){
+void TrayIcon::OnPsChange(_SYSTEM_POWER_STATUS powerStatus){
     // no change required
     if(powerStatus.ACLineStatus == ACLineStatus && powerStatus.BatteryLifePercent == percentage){
         return;
@@ -104,12 +105,22 @@ void TrayIcon::UpdateIcon(_SYSTEM_POWER_STATUS powerStatus){
 
     ACLineStatus = powerStatus.ACLineStatus;
     percentage = powerStatus.BatteryLifePercent;
-    UpdateIcon(percentage, ACLineStatus);
+    UpdateBatteryIcon(percentage, ACLineStatus);
+
+}
+
+void TrayIcon::OnNewSetting(){
+    if(setting.value("tray/showBattery").toBool()){
+        UpdateBatteryIcon(percentage,ACLineStatus);
+    }
+    else{
+        setIcon(QIcon(QPixmap(staticIconFile)));
+    }
 
 }
 
 void TrayIcon::RefreshIcon(){
-    QTimer::singleShot(2000, this, [=](){UpdateIcon(percentage,ACLineStatus);});
+//    QTimer::singleShot(5000, this, [=](){UpdateBatteryIcon(percentage,ACLineStatus);});
 }
 
 TrayIcon::~TrayIcon(){
