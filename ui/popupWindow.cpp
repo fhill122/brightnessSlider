@@ -6,8 +6,6 @@
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QScreen>
-#include <QGraphicsOpacityEffect>
-#include <QGraphicsBlurEffect>
 
 #include <QPainter>
 
