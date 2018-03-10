@@ -47,8 +47,7 @@ int main(int argc, char *argv[])
 
     QSettings::setDefaultFormat(QSettings::IniFormat);
     QApplication::setOrganizationName(GlobalConfig::OrganizationName);
-    QApplication::setApplicationName(GlobalConfig::ApplicationName);
-    QSettings::setPath(QSettings::IniFormat,QSettings::UserScope,"./");
+//    QApplication::setApplicationName(GlobalConfig::ApplicationName);
 
     QApplication a(argc, argv);
     MainApp app(&a);

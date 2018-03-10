@@ -25,6 +25,7 @@ class MainApp : public QObject
     QString name = "YoYoQpKeNc";
 
 private:
+    void initSetting();
 
 public:
     explicit MainApp(QApplication* a, QObject *parent = 0);

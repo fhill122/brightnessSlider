@@ -24,6 +24,7 @@ private:
 public:
     explicit SettingWindow(QWidget *parent = 0);
     void show();
+    void resetToDefault();
     ~SettingWindow();
 
 private:

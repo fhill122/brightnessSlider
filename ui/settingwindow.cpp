@@ -43,6 +43,27 @@ void SettingWindow::show(){
     QDialog::show();
 }
 
+void SettingWindow::resetToDefault(){
+    s.setValue("popup/background_a", 0.8);
+    s.setValue("popup/background_r", 0);
+    s.setValue("popup/background_g", 0);
+    s.setValue("popup/background_b", 0);
+    s.setValue("popup/sliderMatchSysColor", true);
+    s.setValue("popup/sliderColor_r", 0);
+    s.setValue("popup/sliderColor_g", 85);
+    s.setValue("popup/sliderColor_b", 255);
+    s.setValue("tray/showBattery", true);
+    s.setValue("tray/batteryColor_r", 255);
+    s.setValue("tray/batteryColor_g", 255);
+    s.setValue("tray/batteryColor_b", 255);
+    s.setValue("tray/warnLowBattery", true);
+    s.setValue("tray/lowBatteryPercent", 30);
+    s.setValue("tray/lowBatteryColor_r", 255);
+    s.setValue("tray/lowBatteryColor_g", 50);
+    s.setValue("tray/lowBatteryColor_b", 0);
+    s.sync();
+}
+
 void SettingWindow::accept(){
     //popup/background
     s.setValue("popup/background_a", 0.01*ui->s_transparency->value());

@@ -4,8 +4,8 @@
 
 namespace GlobalConfig {
     // for QSettings
-    const QString OrganizationName = "config";
-    const QString ApplicationName = "config";
+    const QString OrganizationName = "BrightnessSlider";
+//    const QString ApplicationName = "BrightnessSlider";
 }
 
 #endif // GLOBALCONFIG_H

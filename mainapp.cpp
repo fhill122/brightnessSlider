@@ -25,9 +25,23 @@ int MainApp::run()
     }
     instance.listen(name);
 
+    initSetting();
+
     trayIcon.show();
 
     return qapp->exec();
+}
+
+void MainApp::initSetting()
+{
+    QSettings s;
+    if(s.contains("popup/background_a")){
+        return;
+    }
+    else{
+        qDebug()<<"No setting file! Default setting applied";
+        sw.resetToDefault();
+    }
 }
 
 void MainApp::restart()
