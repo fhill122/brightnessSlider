@@ -105,12 +105,14 @@ void TrayIcon::OnPsChange(_SYSTEM_POWER_STATUS powerStatus){
 
     ACLineStatus = powerStatus.ACLineStatus;
     percentage = powerStatus.BatteryLifePercent;
-    UpdateBatteryIcon(percentage, ACLineStatus);
-
+    if(setting.value("tray/showBattery").toBool()){
+        UpdateBatteryIcon(percentage, ACLineStatus);
+    }
 }
 
 void TrayIcon::OnNewSetting(){
     if(setting.value("tray/showBattery").toBool()){
+        qDebug()<<"tray setting updated";
         UpdateBatteryIcon(percentage,ACLineStatus);
     }
     else{
