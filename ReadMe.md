@@ -1,9 +1,31 @@
-Adding info....
+## Description
+Using a tablet? Ever miss the long gone brightness slider? Want to know the battery status at a glance?
 
-A small app that provides a brightness slider for windows tablet, and a battery monitor in system tray.
+This mini app resides in system tray showing battery percentage and charging status, and with one click, you are free to slide your brightness. Touch friendly and dpi aware. Right click to access additional ui settings.
 
-The latest source code will always be updated here, feel free to compile and run.
+**Note:** brightness setting function works with most tablets and laptops, but not with desktop monitors. If you have "Change brightness" option in your system setting app, you are probably good to go.
+
+**Visit** [windows store page](https://www.microsoft.com/store/productId/9N1HLKD45FRR) for screenshots.
+
+## Features
+- Easy access brightness slider
+- Battery monitor
+- Touch freiendly
+- Dpi aware
+
+**Upcoming:**
+- Integrated volume control
+- Integrated detailed power info and control
+
+
+## Download
+Windows store version：https://www.microsoft.com/store/productId/9N1HLKD45FRR
 Free download: https://github.com/fhill122/brightnessSlider/releases
-A Windows store version app will also be available soon.
 
-Contact me: fhill122@gmail.com
+Note: The source code will always be updated here, feel free to compile yourself and run. However, the lastest version of compiled application will only be released to the windows store.
+
+---
+
+**Contact me:** fhill122@gmail.com
+
+Adding info...
