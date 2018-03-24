@@ -62,6 +62,7 @@ void SettingWindow::resetToDefault(){
     s.setValue("tray/lowBatteryColor_g", 50);
     s.setValue("tray/lowBatteryColor_b", 0);
     s.sync();
+    emit newSetting();
 }
 
 void SettingWindow::accept(){
