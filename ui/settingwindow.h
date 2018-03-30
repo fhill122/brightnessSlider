@@ -24,7 +24,9 @@ private:
 public:
     explicit SettingWindow(QWidget *parent = 0);
     void show();
-    void resetToDefault();
+    // forceAll = true to force all setting to default no matter it exists or not;
+    // forceAll = false to only reset settings that not exist
+    void resetToDefault(bool forceAll = false);
     ~SettingWindow();
 
 private:

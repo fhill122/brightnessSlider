@@ -25,12 +25,11 @@ TrayIcon::TrayIcon(QObject *parent):
 
     // Set tray icon
     setIcon(QIcon(QPixmap(staticIconFile)));
-    if (TrayConfig::chargingBackground == TrayConfig::C_BACKGROUND_IMAGE) {
-        chargingBackground = QPixmap(TrayConfig::chargingBackgroundImage);
-        if(chargingBackground.isNull()){
-            qDebug() << "Tray charging background image not found!";
-        }
+    chargingBackground = QPixmap(TrayConfig::chargingBackgroundImage);
+    if(chargingBackground.isNull()){
+        qDebug() << "Tray charging background image not found!";
     }
+
 
     font = QFont( TrayConfig::fontFamily,  TrayConfig::fontSize);
 
@@ -78,15 +77,19 @@ void TrayIcon:: UpdateBatteryIcon (int percentage, bool plugged){
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::HighQualityAntialiasing);
 
     // case: full
-    if(percentage == 100 && plugged){
-        painter.drawPixmap(pixmap.rect(), QPixmap(TrayConfig::chargingFullImage));
+    if(percentage ==100){
+        if(plugged && setting.value("tray/pluggedInBackground").toBool()){
+            painter.drawPixmap(pixmap.rect(), QPixmap(TrayConfig::chargingFullImage));
+        }
+        else
+            painter.drawPixmap(pixmap.rect(), QPixmap(TrayConfig::batteryFullImage));
     }
-    else if (percentage == 100 && !plugged)
-        painter.drawPixmap(pixmap.rect(), QPixmap(TrayConfig::batteryFullImage));
     // case: not full
     else{
-        if (plugged)
+        if (plugged && setting.value("tray/pluggedInBackground").toBool() ){
             painter.drawPixmap(pixmap.rect(), chargingBackground);
+            qDebug()<<"charging background";
+        }
         DrawNumber(percentage, plugged, painter, pixmap.rect());
     }
 

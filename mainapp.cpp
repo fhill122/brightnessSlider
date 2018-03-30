@@ -35,13 +35,7 @@ int MainApp::run()
 void MainApp::initSetting()
 {
     QSettings s;
-    if(s.contains("popup/background_a")){
-        return;
-    }
-    else{
-        qDebug()<<"No setting file! Default setting applied";
-        sw.resetToDefault();
-    }
+    sw.resetToDefault();
 }
 
 void MainApp::restart()

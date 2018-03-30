@@ -39,28 +39,31 @@ void SettingWindow::show(){
     tray_lBatteryColor.setRgb(s.value("tray/lowBatteryColor_r").toInt(), s.value("tray/lowBatteryColor_g").toInt(), s.value("tray/lowBatteryColor_b").toInt());
     setButtonColor(ui->b_lowBatteryColor,tray_lBatteryColor);
 
+    ui->cb_pluggedInBackground->setChecked(s.value("tray/pluggedInBackground").toBool());
 
     QDialog::show();
 }
 
-void SettingWindow::resetToDefault(){
-    s.setValue("popup/background_a", 0.8);
-    s.setValue("popup/background_r", 0);
-    s.setValue("popup/background_g", 0);
-    s.setValue("popup/background_b", 0);
-    s.setValue("popup/sliderMatchSysColor", true);
-    s.setValue("popup/sliderColor_r", 0);
-    s.setValue("popup/sliderColor_g", 85);
-    s.setValue("popup/sliderColor_b", 255);
-    s.setValue("tray/showBattery", true);
-    s.setValue("tray/batteryColor_r", 255);
-    s.setValue("tray/batteryColor_g", 255);
-    s.setValue("tray/batteryColor_b", 255);
-    s.setValue("tray/warnLowBattery", true);
-    s.setValue("tray/lowBatteryPercent", 30);
-    s.setValue("tray/lowBatteryColor_r", 255);
-    s.setValue("tray/lowBatteryColor_g", 50);
-    s.setValue("tray/lowBatteryColor_b", 0);
+void SettingWindow::resetToDefault(bool forceAll){
+    if (forceAll || !s.contains("popup/background_a") ){ s.setValue("popup/background_a", 0.8);}
+    if (forceAll || !s.contains("popup/background_r") ){ s.setValue("popup/background_r", 0);}
+    if (forceAll || !s.contains("popup/background_g") ){ s.setValue("popup/background_g", 0);}
+    if (forceAll || !s.contains("popup/background_b") ){ s.setValue("popup/background_b", 0);}
+    if (forceAll || !s.contains("popup/sliderMatchSysColor") ){ s.setValue("popup/sliderMatchSysColor", true);}
+    if (forceAll || !s.contains("popup/sliderColor_r") ){ s.setValue("popup/sliderColor_r", 0);}
+    if (forceAll || !s.contains("popup/sliderColor_g") ){ s.setValue("popup/sliderColor_g", 85);}
+    if (forceAll || !s.contains("popup/sliderColor_b") ){ s.setValue("popup/sliderColor_b", 255);}
+    if (forceAll || !s.contains("tray/showBattery") ){ s.setValue("tray/showBattery", true);}
+    if (forceAll || !s.contains("tray/batteryColor_r") ){ s.setValue("tray/batteryColor_r", 255);}
+    if (forceAll || !s.contains("tray/batteryColor_g") ){ s.setValue("tray/batteryColor_g", 255);}
+    if (forceAll || !s.contains("tray/batteryColor_b") ){ s.setValue("tray/batteryColor_b", 255);}
+    if (forceAll || !s.contains("tray/warnLowBattery") ){ s.setValue("tray/warnLowBattery", true);}
+    if (forceAll || !s.contains("tray/lowBatteryPercent") ){ s.setValue("tray/lowBatteryPercent", 30);}
+    if (forceAll || !s.contains("tray/lowBatteryColor_r") ){ s.setValue("tray/lowBatteryColor_r", 255);}
+    if (forceAll || !s.contains("tray/lowBatteryColor_g") ){ s.setValue("tray/lowBatteryColor_g", 50);}
+    if (forceAll || !s.contains("tray/lowBatteryColor_b") ){ s.setValue("tray/lowBatteryColor_b", 0);}
+    if (forceAll || !s.contains("tray/pluggedInBackground") ){ s.setValue("tray/pluggedInBackground", true);}
+
     s.sync();
     emit newSetting();
 }
@@ -86,6 +89,7 @@ void SettingWindow::accept(){
     s.setValue("tray/lowBatteryColor_r", tray_lBatteryColor.red());
     s.setValue("tray/lowBatteryColor_g", tray_lBatteryColor.green());
     s.setValue("tray/lowBatteryColor_b", tray_lBatteryColor.blue());
+    s.setValue("tray/pluggedInBackground", ui->cb_pluggedInBackground->isChecked());
     s.sync();
 
     emit newSetting();
