@@ -19,10 +19,10 @@ This mini app resides in system tray showing battery percentage and charging sta
 
 
 ## Download
-Microsoft store：https://www.microsoft.com/store/productId/9N1HLKD45FRR  
+Microsoft store: https://www.microsoft.com/store/productId/9N1HLKD45FRR  
 Free download: https://github.com/fhill122/brightnessSlider/releases
 
-Note: The source code will always be updated here, feel free to compile yourself and run. However, the lastest version of compiled application will only be released to the Microsoft store.
+**Note:** The source code will always be updated here, feel free to compile yourself and run. However, the lastest version of compiled application will only be released to the Microsoft store.
 
 ---
 
